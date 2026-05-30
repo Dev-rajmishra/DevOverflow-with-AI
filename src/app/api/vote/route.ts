@@ -3,6 +3,7 @@ import { databases, users } from "@/models/server/config";
 import { NextRequest, NextResponse } from "next/server";
 import { ID, Query } from "node-appwrite";
 import { UserPrefs } from "@/store/Auth";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
   try {
@@ -73,6 +74,12 @@ export async function POST(request: NextRequest) {
         Query.limit(1),
       ]),
     ]);
+
+    // Invalidate cached question details, votes, user reputation, etc.
+    const questionId = type === "question" ? typeId : targetDoc.questionId;
+    revalidateTag(`question-${questionId}`, { expire: 0 });
+    revalidateTag("questions", { expire: 0 });
+    revalidateTag(`user-${authorId}`, { expire: 0 });
 
     return NextResponse.json(
       {

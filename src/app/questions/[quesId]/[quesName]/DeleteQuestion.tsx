@@ -6,6 +6,7 @@ import { useAuthStore } from "@/store/Auth";
 import { IconTrash } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { revalidateQuestionCache } from "@/app/actions";
 
 const DeleteQuestion = ({
   questionId,
@@ -20,6 +21,7 @@ const DeleteQuestion = ({
   const deleteQuestion = async () => {
     try {
       await databases.deleteDocument(db, questionCollection, questionId);
+      await revalidateQuestionCache(questionId);
 
       router.push("/questions");
     } catch (error: any) {

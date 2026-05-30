@@ -66,10 +66,10 @@ const Layout = async ({
 
   return (
     <div className="container mx-auto space-y-6 px-4 pb-20 pt-32 relative">
-      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-75 h-75 bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none" />
       
       <div className="flex flex-col gap-6 sm:flex-row items-start rounded-2xl border border-white/10 bg-slate-950/40 backdrop-blur-md p-6 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 inset-y-0 left-0 w-1 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500" />
+        <div className="absolute top-0 inset-y-0 left-0 w-1 bg-linear-to-b from-indigo-500 via-purple-500 to-pink-500" />
         
         <div className="w-36 h-36 shrink-0 rounded-2xl border border-white/10 overflow-hidden bg-slate-900 shadow-xl">
           <picture className="block w-full h-full">

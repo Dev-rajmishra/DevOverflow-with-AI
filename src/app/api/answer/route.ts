@@ -3,6 +3,7 @@ import { databases, users } from "@/models/server/config";
 import { NextRequest, NextResponse } from "next/server";
 import { ID } from "node-appwrite";
 import { UserPrefs } from "@/store/Auth";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,6 +25,11 @@ export async function POST(request: NextRequest) {
     await users.updatePrefs(authorId, {
       reputation: Number(prefs.reputation) + 1,
     });
+
+    // Invalidate cached data for the question, the listing, and the user's reputation
+    revalidateTag(`question-${questionId}`, { expire: 0 });
+    revalidateTag("questions", { expire: 0 });
+    revalidateTag(`user-${authorId}`, { expire: 0 });
 
     return NextResponse.json(response, {
       status: 201,
@@ -57,6 +63,11 @@ export async function DELETE(request: NextRequest) {
     await users.updatePrefs(answer.authorId, {
       reputation: Number(prefs.reputation) - 1,
     });
+
+    // Invalidate cached data for the question, the listing, and the user's reputation
+    revalidateTag(`question-${answer.questionId}`, { expire: 0 });
+    revalidateTag("questions", { expire: 0 });
+    revalidateTag(`user-${answer.authorId}`, { expire: 0 });
 
     return NextResponse.json({ data: response }, { status: 200 });
   } catch (error: any) {

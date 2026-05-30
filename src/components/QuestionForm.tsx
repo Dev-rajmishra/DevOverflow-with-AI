@@ -19,6 +19,7 @@ import {
 import confetti from "canvas-confetti";
 import { uploadToCloudinary } from "@/utils/cloudinary";
 import { toast } from "@/store/Toast";
+import { revalidateQuestionCache } from "@/app/actions";
 
 const LabelInputContainer = ({
   children,
@@ -168,6 +169,7 @@ const QuestionForm = ({ question }: { question?: any }) => {
 
     try {
       const response = question ? await update() : await create();
+      await revalidateQuestionCache(response.$id);
 
       router.push(`/questions/${response.$id}/${slugify(formData.title)}`);
     } catch (error: any) {
