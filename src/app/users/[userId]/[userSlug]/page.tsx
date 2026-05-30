@@ -97,11 +97,11 @@ export default async function Page({
       
       {/* 1. GAMIFICATION LEVEL PROGRESS */}
       <div className="rounded-2xl border border-white/10 bg-slate-950 p-6 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-75 h-75 bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-4">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/10">
+            <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/10">
               <div className="w-full h-full rounded-2xl bg-slate-950 flex flex-col items-center justify-center font-bold">
                 <span className="text-[10px] text-gray-500 leading-none">LVL</span>
                 <span className="text-xl text-white leading-none mt-0.5">{currentLevel}</span>
@@ -126,14 +126,14 @@ export default async function Page({
         <div className="w-full h-3 rounded-full bg-white/5 border border-white/10 overflow-hidden relative p-0.5">
           <div 
             style={{ width: `${levelProgress}%` }}
-            className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-indigo-500/30 transition-all duration-500" 
+            className="h-full rounded-full bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-indigo-500/30 transition-all duration-500" 
           />
         </div>
       </div>
 
       {/* 2. REPUTATION & INTERACTIVE STATS CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <MagicCard className="flex w-full cursor-pointer flex-col items-center justify-center overflow-hidden p-8 shadow-2xl min-h-[180px]">
+        <MagicCard className="flex w-full cursor-pointer flex-col items-center justify-center overflow-hidden p-8 shadow-2xl min-h-45">
           <div className="absolute inset-x-4 top-4">
             <h2 className="text-sm font-bold uppercase tracking-wider text-orange-500 font-mono">Reputation</h2>
           </div>
@@ -143,7 +143,7 @@ export default async function Page({
           <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_120%,rgba(249,115,22,0.15),rgba(255,255,255,0))]" />
         </MagicCard>
 
-        <MagicCard className="flex w-full cursor-pointer flex-col items-center justify-center overflow-hidden p-8 shadow-2xl min-h-[180px]">
+        <MagicCard className="flex w-full cursor-pointer flex-col items-center justify-center overflow-hidden p-8 shadow-2xl min-h-45">
           <div className="absolute inset-x-4 top-4">
             <h2 className="text-sm font-bold uppercase tracking-wider text-indigo-500 font-mono">Questions asked</h2>
           </div>
@@ -153,7 +153,7 @@ export default async function Page({
           <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_120%,rgba(99,102,241,0.15),rgba(255,255,255,0))]" />
         </MagicCard>
 
-        <MagicCard className="flex w-full cursor-pointer flex-col items-center justify-center overflow-hidden p-8 shadow-2xl min-h-[180px]">
+        <MagicCard className="flex w-full cursor-pointer flex-col items-center justify-center overflow-hidden p-8 shadow-2xl min-h-45">
           <div className="absolute inset-x-4 top-4">
             <h2 className="text-sm font-bold uppercase tracking-wider text-purple-500 font-mono">Answers given</h2>
           </div>
@@ -192,10 +192,10 @@ export default async function Page({
         <div className="flex justify-between items-center text-[10px] text-gray-500 font-mono mt-3 px-1">
           <span>Less active</span>
           <div className="flex gap-1 items-center">
-            <div className="w-2.5 h-2.5 rounded-[2px] bg-white/5 border border-white/[0.02]" />
-            <div className="w-2.5 h-2.5 rounded-[2px] bg-emerald-500/20" />
-            <div className="w-2.5 h-2.5 rounded-[2px] bg-emerald-500/50" />
-            <div className="w-2.5 h-2.5 rounded-[2px] bg-emerald-500/90" />
+            <div className="w-2.5 h-2.5 rounded-xs bg-white/5 border border-white/2" />
+            <div className="w-2.5 h-2.5 rounded-xs bg-emerald-500/20" />
+            <div className="w-2.5 h-2.5 rounded-xs bg-emerald-500/50" />
+            <div className="w-2.5 h-2.5 rounded-xs bg-emerald-500/90" />
           </div>
           <span>More active</span>
         </div>
@@ -215,7 +215,7 @@ export default async function Page({
               className={`flex items-start gap-4 rounded-xl border p-4 shadow-lg transition-all duration-200 ${
                 badge.unlocked 
                   ? `${badge.color} border-opacity-40` 
-                  : "border-white/5 bg-white/[0.02] opacity-40 select-none"
+                  : "border-white/5 bg-white/2 opacity-40 select-none"
               }`}
             >
               <div className="shrink-0 mt-0.5">
